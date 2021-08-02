@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="LokeshVishwakarma" />
+    <meta name="revised" content="lexuspostman.com, 12:14 31-07-2021" />
+    <meta name="robot" content="index,follow" />
+    <meta http-equiv="content-language" content="en-US" />
+    <meta name="copyright" content="copyright 2021-2020 lexuscreations.com" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style/css/Style.css">
+    <title>LexusPostman - LexusCreations</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid border rounded shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./favicon.ico" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                <span class="h4">LexusPostman</span>
+                <p style="font-size: 17px;margin: 0;">Lexus First Online Postman</p>
+            </a>
+            <div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-4 min-vh-100">
+        <form data-form>
+            <div class="input-group mb-4 border rounded shadow p-1">
+                <select class="form-select flex-grow-0 w-auto bg-warning text-light" style="font-weight: bolder;" data-method>
+                  <option value="TEST" selected class="h5">TEST</option>
+                  <option value="GET" selected class="h5">GET</option>
+                  <option value="POST" class="h5">POST</option>
+                  <option value="PUT" class="h5">PUT</option>
+                  <option value="PATCH" class="h5">PATCH</option>
+                  <option value="DELETE" class="h5">DELETE</option>
+                </select>
+                <input data-url required class="form-control text-success bg-dark" style="font-weight: bolder;" type="url" placeholder="https://example.com" />
+                <button type="submit" id="requestSubmit" class="btn btn-primary"><i class="zmdi zmdi-mail-send">&nbsp;Send</i></button>
+            </div>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="query-params-tab" data-bs-toggle="tab" data-bs-target="#query-params" type="button" role="tab" aria-controls="query-params" aria-selected="true">QueryParam's</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="request-headers-tab" data-bs-toggle="tab" data-bs-target="#request-headers" type="button" role="tab" aria-controls="request-headers" aria-selected="false">Headers</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="json-tab" data-bs-toggle="tab" data-bs-target="#json" type="button" role="tab" aria-controls="json" aria-selected="false">JSON</button>
+                </li>
+            </ul>
+
+            <div class="tab-content p-3 border-top-0 border rounded shadow p-1">
+                <div class="tab-pane fade show active" id="query-params" role="tabpanel" aria-labelledby="query-params-tab">
+                    <button data-add-query-param-btn class="mt-2 btn btn-outline-success border rounded shadow" type="button">
+                      <i class="fas fa-plus">&nbsp;Add</i>
+                    </button>
+                    <div data-query-params></div>
+                </div>
+                <div class="tab-pane fade" id="request-headers" role="tabpanel" aria-labelledby="request-headers-tab">
+                    <div data-request-headers></div>
+                    <button data-add-request-header-btn class="mt-2 btn btn-outline-success border rounded shadow" type="button">Add</button>
+                </div>
+                <div class="tab-pane fade" id="json" role="tabpanel" aria-labelledby="json-tab">
+                    <div data-json-request-body class="overflow-auto" style="max-height: 200px;"></div>
+                </div>
+            </div>
+        </form>
+
+        <div class="mt-5 d-none" data-response-section>
+            <h3>Response</h3>
+            <div class="d-flex my-2">
+                <div class="me-3">
+                    Status: <span data-status></span>
+                </div>
+                <div class="me-3">
+                    Time: <span data-time></span>ms
+                </div>
+                <div class="me-3">
+                    Size: <span data-size></span>
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="body-tab" data-bs-toggle="tab" data-bs-target="#body" type="button" role="tab" aria-controls="body" aria-selected="true">Body</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="response-headers-tab" data-bs-toggle="tab" data-bs-target="#response-headers" type="button" role="tab" aria-controls="response-headers" aria-selected="false">Headers</button>
+                </li>
+            </ul>
+
+            <div class="tab-content p-3 border-top-0 border rounded shadow">
+                <div class="tab-pane fade show active" id="body" role="tabpanel" aria-labelledby="body-tab">
+                    <div data-json-response-body class="overflow-auto" style="max-height: 200px;"></div>
+                </div>
+                <div class="tab-pane fade" id="response-headers" role="tabpanel" aria-labelledby="response-headers-tab">
+                    <div style="display: grid; grid-template-columns: auto 1fr; gap: .5rem 2rem;" data-response-headers></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="text-center min-vh-100">
+        <h1>About</h1>
+        <div class="d-flex justify-content-center align-items-center mt-5 pt-4">
+            <div class="media position-relative m-auto">
+                <img src="./favicon.ico" class="mr-3" alt="Logo">
+                <div class="media-body">
+                    <span class="mt-0">
+                      <h3 class="mt-4">LokeshVishwakarma</h3>
+                      <h4>LexusCreations</h4>
+                    </span>
+                    <p>Full Stack Web Developer, JavaScript Enthusiast And A Software Engineer, Work's As Freelancer🔥 🏅⚡🔬</p>
+                    <a href="https://github.com/lexuscreations">Github&nbsp;<i class="zmdi zmdi-arrow-right-top"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <template data-key-value-template>
+      <div class="input-group my-2 border rounded shadow p-1" data-key-value-pair>
+        <input type="text" data-key class="form-control" placeholder="Key" />
+        <input type="text" data-value class="form-control" placeholder="Value" />
+        <button type="button" data-remove-btn class="btn btn-outline-danger"><i class="fas fa-minus">&nbsp;Remove</i></button>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        $("[href^='#']").click(function() {
+            id = $(this).attr("href")
+            $('html, body').animate({
+                scrollTop: $(id).offset().top
+            }, 500)
+        })
+        $('[data-method]').click(() => {
+            if ($('[data-method]').val() == "TEST") {
+                $('[data-method]').val("GET")
+                $("[data-url]").val('https://jsonplaceholder.typicode.com/users')
+                $('#requestSubmit').click()
+            }
+        })
+    </script>
+    <script src="./script.js" type="module"></script>
+</body>
+
+</html>
