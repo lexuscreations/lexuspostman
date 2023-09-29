@@ -1,4 +1,5 @@
-# lexuspostman
-lexuspostman rest api test postman client 
-<br/>
-Link - <a href="https://lexuspostman.netlify.app/" target="_blank">Visit</a>
+## lexuspostman
+
+### lexuspostman rest api test postman client 
+
+### Visit - [netlify/lexuspostman](https://lexuspostman.netlify.app/)
